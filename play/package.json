@@ -1,0 +1,13 @@
+{
+  "name": "@udesign-vue/play",
+  "private": "true",
+  "scripts": {
+    "dev": "vite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^4.4.9"
+  }
+}

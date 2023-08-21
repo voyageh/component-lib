@@ -1,0 +1,40 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "pnpm -C play dev",
+    "clean": "rimraf dist",
+    "build": "pnpm run -C build start",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/lodash": "^4.14.197",
+    "@types/lodash-es": "^4.17.8",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "rimraf": "^5.0.1",
+    "sass": "^1.64.2",
+    "typescript": "^5.1.6",
+    "unplugin-vue-components": "^0.25.1",
+    "unplugin-vue-macros": "^2.4.4",
+    "vue": "^3.2.37"
+  },
+  "dependencies": {
+    "@udesign-vue/components": "workspace:^",
+    "@udesign-vue/hooks": "workspace:^",
+    "@udesign-vue/theme-chalk": "workspace:^",
+    "@udesign-vue/utils": "workspace:^",
+    "lodash-es": "^4.17.21"
+  },
+  "name": "udesign-vue",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "description": ""
+}

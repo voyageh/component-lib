@@ -1,0 +1,33 @@
+{
+  "name": "udesign-vue",
+  "version": "0.0.0-dev.1",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "es/index.mjs",
+  "types": "es/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "require": "./lib/index.js",
+      "import": "./es/index.mjs"
+    },
+    "./resolvers": {
+      "types": "./es/resolvers.d.ts",
+      "require": "./lib/resolvers.js",
+      "import": "./es/resolvers.mjs"
+    },
+    "./*": "./*"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["vue3", "ui", "rollup"],
+  "author": "zlf",
+  "license": "ISC",
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21"
+  }
+}

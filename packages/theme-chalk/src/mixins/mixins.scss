@@ -1,0 +1,29 @@
+@use "config" as *;
+
+// 使得引入mixins.scss，可以使用function.scss和conning
+@forward "function";
+@forward "config";
+
+// b(button) => .ul-button{}
+@mixin b($block) {
+  $B: $namespace + $common-separator + $block !global;
+
+  .#{$B} {
+    @content;
+  }
+}
+
+// primary => &--primary
+@mixin m($modifier) {
+  $selector: &;
+  $currentSelector: "";
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector + $selector + $modifier-separator + $unit + ","};
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}

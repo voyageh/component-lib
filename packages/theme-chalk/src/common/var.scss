@@ -1,0 +1,154 @@
+// common/var.scss 定义一些颜色变量，比如 $colors, $text-color, $border-color, $fill-color, $disabled 等等。
+
+@use "sass:map";
+@use "sass:math";
+
+@use "../mixins/function.scss" as *;
+
+// 颜色类型
+$types: ("primary", "success", "warning", "danger", "error", "info");
+
+// 主题色
+$colors: () !default;
+$colors: map.deep-merge(
+  (
+    "white": #ffffff,
+    "black": #000000,
+    "primary": (
+      "base": #409eff,
+    ),
+    "success": (
+      "base": #67c23a,
+    ),
+    "warning": (
+      "base": #e6a23c,
+    ),
+    "danger": (
+      "base": #f56c6c,
+    ),
+    "error": (
+      "base": #f56c6c,
+    ),
+    "info": (
+      "base": #909399,
+    ),
+  ),
+  $colors
+);
+
+$color-white: map.get($colors, "white") !default;
+$color-black: map.get($colors, "black") !default;
+
+// font-size
+$font-size: () !default;
+$font-size: map.merge(
+  (
+    "extra-large": 20px,
+    "large": 18px,
+    "medium": 16px,
+    "base": 14px,
+    "small": 13px,
+    "extra-small": 12px,
+  ),
+  $font-size
+);
+
+// text
+$text-color: () !default;
+$text-color: map.merge(
+  (
+    "primary": #303133,
+    "regular": #606266,
+    "secondary": #909399,
+    "placeholder": #a8abb2,
+    "disabled": #c0c4cc,
+  ),
+  $text-color
+);
+
+// border
+$border-width: 1px !default;
+$border-style: solid !default;
+$border-color-hover: getCssVar("text-color", "disabled") !default;
+$border-color: () !default;
+$border-color: map.merge(
+  (
+    "": #dcdfe6,
+    "light": #e4e7ed,
+    "lighter": #ebeef5,
+    "extra-light": #f2f6fc,
+    "dark": #d4d7de,
+    "darker": #cdd0d6,
+  ),
+  $border-color
+);
+
+// border-radius
+$border-radius: () !default;
+$border-radius: map.merge(
+  (
+    "base": 4px,
+    "small": 2px,
+    "round": 20px,
+    "circle": 100%,
+  ),
+  $border-radius
+);
+
+$fill-color: () !default;
+$fill-color: map.merge(
+  (
+    "": #f0f2f5,
+    "light": #f5f7fa,
+    "lighter": #fafafa,
+    "extra-light": #fafcff,
+    "dark": #ebedf0,
+    "darker": #e6e8eb,
+    "blank": #ffffff,
+  ),
+  $fill-color
+);
+
+// Disable default
+$disabled: () !default;
+$disabled: map.merge(
+  (
+    "bg-color": getCssVar("fill-color", "light"),
+    "text-color": getCssVar("text-color", "placeholder"),
+    "border-color": getCssVar("border-color", "light"),
+  ),
+  $disabled
+);
+
+@mixin set-color-mix-level($type, $number, $mode: "light", $mix-color: $color-white) {
+  $colors: map.deep-merge(
+    (
+      $type: (
+        "#{$mode}-#{$number}": mix($mix-color, map.get($colors, $type, "base"), math.percentage(math.div($number, 10))),
+      ),
+    ),
+    $colors
+  ) !global;
+}
+
+// $colors.primary.light-i
+// --el-color-primary-light-i
+// 10% 53a8ff
+// 20% 66b1ff
+// 30% 79bbff
+// 40% 8cc5ff
+// 50% a0cfff
+// 60% b3d8ff
+// 70% c6e2ff
+// 80% d9ecff
+// 90% ecf5ff
+@each $type in $types {
+  @for $i from 1 through 9 {
+    @include set-color-mix-level($type, $i, "light", $color-white);
+  }
+}
+
+// --el-color-primary-dark-2
+@each $type in $types {
+  @include set-color-mix-level($type, 2, "dark", $color-black);
+}

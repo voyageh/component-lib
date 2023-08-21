@@ -1,0 +1,10 @@
+/* .vitepress/theme/custom.css */
+:root {
+  --vp-c-green: #0083f0;
+  --vp-c-green-lighter: #0083e4;
+}
+
+.u-collapse-transition-leave-active,
+.u-collapse-transition-enter-active {
+  transition: 0.3s max-height ease-in-out, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out;
+}
